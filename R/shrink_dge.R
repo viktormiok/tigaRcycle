@@ -5,12 +5,12 @@
 #########################################################################################
 
 shrink_dge <- function(dds, 
-                       method = "shrinkbayes",
+                       method="shrinkbayes",
                        contrast,
-                       family = "nb",
-                       num_gene = 100,
-                       maxiter = 3,
-                       ncpus = 2){
+                       family="nb",
+                       num_gene=100,
+                       maxiter=3,
+                       ncpus=2){
           # dds: DESeqDataSet object. Result of DESeq function from DESeq2 package
           # method: Character. Indicated whether DESeq2 or ShrinkBayes package is 
           #         employed for the analysis
@@ -84,42 +84,42 @@ shrink_dge <- function(dds,
           if(method == "shrinkbayes"){
             cond <- dds@colData@listData[[contrast[1]]]
             data <- round(counts(dds,
-                                 normalized = TRUE),
+                                 normalized=TRUE),
                           0)[1:num_gene, cond%in%contrast[2:3]]
             groupfac <- factor(as.numeric(factor(cond[cond%in%contrast[2:3]]))
             )
             #Formula as used by INLA
-            form = y ~ groupfac
+            form=y ~ groupfac
             #Simultaneous shrinkage for 'groupfac' 
-            shrink <- ShrinkSeq(form = form, 
-                                dat = data,
-                                shrinkfixed = "groupfac",
-                                ncpus = ncpus, 
-                                maxiter = maxiter
+            shrink <- ShrinkSeq(form=form, 
+                                dat=data,
+                                shrinkfixed="groupfac",
+                                ncpus=ncpus, 
+                                maxiter=maxiter
             )
             #Fit all using the priors resulting from ShrinkSeq 
-            fit <- FitAllShrink(forms = form,
-                                dat = data,
-                                fams = family,
-                                shrinksimul = shrink,
-                                ncpus = ncpus
+            fit <- FitAllShrink(forms=form,
+                                dat=data,
+                                fams=family,
+                                shrinksimul=shrink,
+                                ncpus=ncpus
             )
             #Find nonparametric prior for differences
-            npprior <- NonParaUpdatePrior(fitall = fit,
-                                          modus = "fixed", 
-                                          shrinkpara = "groupfac",
-                                          ncpus = ncpus, 
-                                          maxiter = 3
+            npprior <- NonParaUpdatePrior(fitall=fit,
+                                          modus="fixed", 
+                                          shrinkpara="groupfac",
+                                          ncpus=ncpus, 
+                                          maxiter=3
             )
             #Update posteriors using the nonparametric prior
             nppostshr <- NonParaUpdatePosterior(fit,
                                                 npprior,
-                                                ncpus = ncpus
+                                                ncpus=ncpus
                                                 
             )
             #Compute local fdrs 
             lfdr <- SummaryWrap(nppostshr,
-                                thr = 0.1
+                                thr=0.1
             )
             #Compute Bayesian FDRs
             BFDRs <- BFDR(lfdr)

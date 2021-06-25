@@ -5,18 +5,18 @@
 ####################################################################################################
 
 association <- function (object,
-                         what = c("p-value", "statistic", "z-score", "weighted"),
-                         cluster = "average",
-                         alpha = 0.05, 
-                         sort = TRUE, 
-                         zoom = FALSE, 
-                         legend = TRUE, 
-                         plot = TRUE,
-                         plot_name = "global_test",
+                         what=c("p-value", "statistic", "z-score", "weighted"),
+                         cluster="average",
+                         alpha=0.05, 
+                         sort=TRUE, 
+                         zoom=FALSE, 
+                         legend=TRUE, 
+                         plot=TRUE,
+                         plot_name="global_test",
                          colors, 
                          alias, 
-                         help.lines = FALSE,
-                         cex.labels = 0.6,
+                         help.lines=FALSE,
+                         cex.labels=0.6,
                          ylim, 
                          pdf, 
                          trace,
@@ -109,7 +109,7 @@ association <- function (object,
                                nchar(pdf))) != ".pdf") 
               pdf <- paste(pdf, 
                            ".pdf", 
-                           sep = ""
+                           sep=""
               )
             pdf(pdf)
           }
@@ -164,7 +164,7 @@ association <- function (object,
               if (trace) {
                 if (progress > 0) 
                   cat(rep("\b", digitsK + trunc(log10(progress)) + 
-                            4), sep = "")
+                            4), sep="")
                 progress <- progress + 1
                 cat(progress, "/", K)
                 flush.console()
@@ -183,14 +183,14 @@ association <- function (object,
             pps <- -log10(leaves[, "p"])
             maxlogp <- max(pps[pps != Inf],
                            0, 
-                           na.rm = TRUE
+                           na.rm=TRUE
             )
             pps[pps == Inf] <- maxlogp + 3
             bars <- switch(what, 
-                           p = pps,
-                           z = (leaves[, "S"] - leaves[, "ES"])/leaves[, "sdS"],
-                           w = , 
-                           s = leaves[, "S"]
+                           p=pps,
+                           z=(leaves[, "S"] - leaves[, "ES"])/leaves[, "sdS"],
+                           w=, 
+                           s=leaves[, "S"]
             )
             names(bars) <- rownames(leaves)
             if (!is.null(alias)) {
@@ -209,14 +209,14 @@ association <- function (object,
               cluster <- "average"
             if (dendrogram) {
               if (dim(leaves)[1] == 1) {
-                hc = list(1)
+                hc=list(1)
                 attr(hc, "label") <- row.names(leaves)[1]
                 attr(hc, "members") <- 1
                 attr(hc, "leaf") <- TRUE
                 attr(hc, "height") <- 0
                 attr(hc, "class") <- "dendrogram"
                 d2s <- dendro2sets(hc)
-                obj@extra <- data.frame(inheritance = p.value(obj))
+                obj@extra <- data.frame(inheritance=p.value(obj))
                 if (!is.null(alias)) 
                   alias(obj) <- names(bars)
                 obj@subsets <- list(row.names(leaves)[1])
@@ -229,17 +229,17 @@ association <- function (object,
                   dd <- as.dist(1 - cors)
                 else dd <- as.dist(1 - abs(cors))
                 hc <- as.dendrogram(hclust(dd, 
-                                           method = cluster)
+                                           method=cluster)
                 )
                 hc <- reorder(hc, 
-                              wts = order.bars,
-                              agglo.FUN = min
+                              wts=order.bars,
+                              agglo.FUN=min
                 )
                 sorter <- unlist(hc)
-                obj@result = rbind(obj@result,
+                obj@result=rbind(obj@result,
                                    leaves
                 )
-                obj@subsets = c(list(obj@functions$cov.names(obj@subsets[[1]])), 
+                obj@subsets=c(list(obj@functions$cov.names(obj@subsets[[1]])), 
                                 unlist(obj@functions$cov.names(subset)))
                 obj@extra <- NULL
                 obj@structure <- NULL
@@ -247,11 +247,11 @@ association <- function (object,
                   alias(obj) <- c("", names(bars))
                 d2s <- dendro2sets(hc)
                 obj <- inheritance(obj, 
-                                   sets = d2s$sets,
-                                   ancestors = d2s$ancestors, 
-                                   trace = trace, 
-                                   Shaffer = TRUE,
-                                   homogeneous = TRUE
+                                   sets=d2s$sets,
+                                   ancestors=d2s$ancestors, 
+                                   trace=trace, 
+                                   Shaffer=TRUE,
+                                   homogeneous=TRUE
                 )
                 obj <- obj[sort.list(names(obj))]
               }
@@ -259,7 +259,7 @@ association <- function (object,
                 if (dendrogram) {
                   select <- unique(do.call(c, 
                                            subsets(leafNodes(obj, 
-                                                             alpha = alpha))
+                                                             alpha=alpha))
                                            
                   )
                   )
@@ -270,40 +270,39 @@ association <- function (object,
                 }
                 sorter <- sorter[sorter %in% select]
               }
-              leaves <- leaves[sorter, , drop = FALSE]
+              leaves <- leaves[sorter, , drop=FALSE]
               bars <- bars[sorter]
               branch2name <- names(d2s$branch)
               names(branch2name) <- unlist(lapply(d2s$branch, 
                                                   function(br) paste(".", 
                                                                      br,
-                                                                     collapse = "", 
-                                                                     sep = "")
+                                                                     collapse="", 
+                                                                     sep="")
               )
               )
               sigcol <- function(tree, branch, sig, top) {
                 branch.name <- branch2name[paste(".", 
                                                  branch, 
-                                                 collapse = "", 
-                                                 sep = ""
+                                                 collapse="", 
+                                                 sep=""
                 )]
                 sig <- sig && (obj@extra[branch.name, "inheritance"] <= 
                                  alpha)
                 uit <- tree
-                attr(uit, "edgePar") <- list(col = ifelse(sig, 
-                                                          1, 
-                                                          gray(0.8)), 
-                                             lwd = ifelse(sig, 2, 1))
+                attr(uit, "edgePar") <- list(col=ifelse(sig, 
+                                                        1, 
+                                                        gray(0.8)), 
+                                                        lwd=ifelse(sig, 2, 1))
                 if (sig && top) 
-                  attr(uit, "nodePar") <- list(pch = 20)
+                  attr(uit, "nodePar") <- list(pch=20)
                 if (!is.leaf(tree)) {
                   select.branch <- 1:length(tree)
                   if (zoom) {
                     sigs <- lapply(1:length(tree), function(i) {
                       subbranch <- branch2name[paste(".", 
-                                                     c(branch, 
-                                                       i), 
-                                                     collapse = "", 
-                                                     sep = "")]
+                                                     c(branch, i), 
+                                                     collapse="", 
+                                                     sep="")]
                       obj@extra[subbranch, "inheritance"] <= 
                         alpha
                     })
@@ -336,21 +335,21 @@ association <- function (object,
               }
               hc <- sigcol(hc,
                            numeric(0), 
-                           sig = TRUE,
-                           top = TRUE
+                           sig=TRUE,
+                           top=TRUE
               )
-              par(mai = c(0, max(1, margins[2]), margins[3:4]))
-              layout(as.matrix(1:2), heights = c(1, 2))
+              par(mai=c(0, max(1, margins[2]), margins[3:4]))
+              layout(as.matrix(1:2), heights=c(1, 2))
               ylab <- ifelse(obj@directional, "correlation", "abs. correlation")
               plot(hc,
-                   leaflab = "none", 
-                   yaxt = "n",
-                   ylab = ylab, 
-                   mgp = c(4, 1, 0),
-                   main = plot_name)
+                   leaflab="none", 
+                   yaxt="n",
+                   ylab=ylab, 
+                   mgp=c(4, 1, 0),
+                   main=plot_name)
               axis(2,
-                   at = seq(0, 2, by = 0.2), 
-                   labels = 1 - seq(0, 2, by = 0.2), las = 2)
+                   at=seq(0, 2, by=0.2), 
+                   labels=1 - seq(0, 2, by=0.2), las=2)
             }
             else {
               obj@subsets <- as.list(row.names(leaves))
@@ -375,7 +374,7 @@ association <- function (object,
             }
             labwidth <- max(strwidth(names(bars), "inches", cex.labels)) + 
               0.2
-            par(mai = c(max(margins[1], labwidth * 1.3),
+            par(mai=c(max(margins[1], labwidth * 1.3),
                         max(1, margins[2]), 
                         if (dendrogram) 0 else margins[3], margins[4])
             )
@@ -383,23 +382,23 @@ association <- function (object,
             if (missing(colors)) 
               if (max(positive) <= 2) 
                 colors <- 3:2
-            else colors <- rainbow(length(obj@legend$cov), start = 0, 
-                                   end = 1/2)
+            else colors <- rainbow(length(obj@legend$cov), start=0, 
+                                   end=1/2)
             if (all(positive %in% 0:1)) 
               cols <- ifelse(positive, colors[1], colors[2])
             else cols <- colors[positive]
             ylab <- switch(what,
-                           p = "p-value",
-                           z = "z-score", 
-                           s = "test statistic", 
-                           w = "weighted test statistic"
+                           p="p-value",
+                           z="z-score", 
+                           s="test statistic", 
+                           w="weighted test statistic"
             )
             if (!missing(ylim)) {
               ylims <- ylim
             }
             else {
-              ylims <- switch(what, z = , p = range(bars), w = , 
-                              s = range(c(bars, leaves[, "ES"])))
+              ylims <- switch(what, z=, p=range(bars), w=, 
+                              s=range(c(bars, leaves[, "ES"])))
               if (ylims[1] > 0) 
                 ylims[1] <- 0
             }
@@ -411,28 +410,28 @@ association <- function (object,
             }
             if(cluster == "average"){
               mids <- drop(barplot(bars, 
-                                   yaxt = "n",
-                                   border = NA,
-                                   las = 2, 
-                                   ylab = ylab, 
-                                   ylim = ylims,
-                                   mgp = c(4, 1, 0), 
-                                   col = cols, 
-                                   cex.names = cex.labels,
-                                   plot = plot)
+                                   yaxt="n",
+                                   border=NA,
+                                   las=2, 
+                                   ylab=ylab, 
+                                   ylim=ylims,
+                                   mgp=c(4, 1, 0), 
+                                   col=cols, 
+                                   cex.names=cex.labels,
+                                   plot=plot)
               )
             } else{
               mids <- drop(barplot(bars, 
-                                   yaxt = "n",
-                                   border = NA,
-                                   las = 2, 
-                                   ylab = ylab, 
-                                   ylim = ylims,
-                                   mgp = c(4, 1, 0), 
-                                   col = cols, 
-                                   cex.names = cex.labels,
-                                   plot = plot,
-                                   main = plot_name)
+                                   yaxt="n",
+                                   border=NA,
+                                   las=2, 
+                                   ylab=ylab, 
+                                   ylim=ylims,
+                                   mgp=c(4, 1, 0), 
+                                   col=cols, 
+                                   cex.names=cex.labels,
+                                   plot=plot,
+                                   main=plot_name)
               )
             }
             
@@ -440,12 +439,12 @@ association <- function (object,
               mb <- max(bars)
               for (i in 1:length(bars)) lines(c(mids[i], mids[i]), 
                                               c(max(0, bars[i]) + 0.01 * mb, mb * 1.2), 
-                                              col = gray(0.8), 
-                                              lty = 3)
+                                              col=gray(0.8), 
+                                              lty=3)
             }
             if (plot) {
               if (what == "p") {
-                labs <- seq(0, ylims[2], by = max(1, ylims[2]%/%5))
+                labs <- seq(0, ylims[2], by=max(1, ylims[2]%/%5))
                 if (length(labs) == 1) {
                   minp <- 10^-ylims[2]
                   if (minp < 0.5) {
@@ -462,15 +461,15 @@ association <- function (object,
                 else if (length(labs) <= 4) 
                   labs <- outer(log10(c(1, 10/3)), labs, "+")
                 if (max(bars) > ylims[2]) 
-                  axis(2, at = c(labs, max(bars)), labels = c(10^-labs, 
-                                                              0), las = 2)
-                else axis(2, at = labs, labels = 10^-labs, las = 2)
+                  axis(2, at=c(labs, max(bars)), labels=c(10^-labs, 
+                                                              0), las=2)
+                else axis(2, at=labs, labels=10^-labs, las=2)
               }
-              else axis(2, las = 2)
+              else axis(2, las=2)
               if (what %in% c("s", "w")) {
                 sapply(seq_along(mids), function(i) {
                   lines(c(mids[i] - 0.5, mids[i] + 0.5), rep(leaves[i, 
-                                                                    "ES"], 2), lwd = 3)
+                                                                    "ES"], 2), lwd=3)
                   sapply(seq_len(max(0, (bars[i] - leaves[i,"ES"])/leaves[i, "sdS"])), 
                          function(k) lines(c(mids[i] - 0.5, mids[i] + 0.5), 
                                            rep(leaves[i, "ES"] + k * leaves[i, "sdS"], 2)
@@ -480,10 +479,10 @@ association <- function (object,
               }
               abline(0, 0)
               if (legend) 
-                legend("topright", obj@legend$cov, fill = colors, 
-                       bg = "white")
+                legend("topright", obj@legend$cov, fill=colors, 
+                       bg="white")
               layout(1)
-              par(mai = margins)
+              par(mai=margins)
               if (!missing(pdf)) {
                 title(ttl)
               }

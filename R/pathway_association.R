@@ -37,13 +37,13 @@ pathway_association <- function(x_data,
                                            x_data[,colnames(x_data)%in%pathways_genes[[i]]]
                       )
                       if(pf_tissue_diet@result[1] < 0.05){
-                        pfTissueDiet <- extract(association(object = pf_tissue_diet,
-                                                            col = c("darkslategray4",
+                        pfTissueDiet <- extract(association(object=pf_tissue_diet,
+                                                            col=c("darkslategray4",
                                                                     "goldenrod4"
                                                             ),
-                                                            plot = TRUE,
-                                                            cluster = FALSE,
-                                                            plot_name = pathways[i]
+                                                            plot=TRUE,
+                                                            cluster=FALSE,
+                                                            plot_name=pathways[i]
                         )      
                         )
                         res <- data.frame(pfTissueDiet@result[,1], 

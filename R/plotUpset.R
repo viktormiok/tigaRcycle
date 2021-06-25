@@ -75,12 +75,12 @@ plotUpset <- function(analyses,
           if (sum(sapply(sig, length) > 0) > 1) {
             aux <- UpSetR::fromList(sig)
             UpSetR::upset(aux, 
-                          nsets = length(aux),
-                          order = "freq",
-                          text.scale = text.scale,
-                          matrix.color = matrix.color,
-                          main.bar.color = main.bar.color,
-                          sets.bar.color = sets.bar.color
+                          nsets=length(aux),
+                          order="freq",
+                          text.scale=text.scale,
+                          matrix.color=matrix.color,
+                          main.bar.color=main.bar.color,
+                          sets.bar.color=sets.bar.color
             )
           } else {
             stop("Two non-empty sets are needed for an upset plot. There is ",

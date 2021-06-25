@@ -50,9 +50,9 @@ getFileSignF <- function(filestyle){
                      "which corresponding to symbols used to separate columns, ",
                      "quote values and used for decimal points).\n") );
             }
-            return(list("sep" = file_sep,
-                        "quote" = file_quote,
-                        "quote2" = file_quote2,
-                        "dec" = file_dec)
+            return(list("sep"=file_sep,
+                        "quote"=file_quote,
+                        "quote2"=file_quote2,
+                        "dec"=file_dec)
             )
 }

@@ -103,18 +103,18 @@ rhythm_gene <- function(infile,
             FILE_DEC <- file_sign$dec
             
             data <- read.table(infile, 
-                               header = TRUE, 
-                               sep = FILE_SEP,
-                               quote = FILE_QUOTE,
-                               dec = FILE_DEC, 
-                               stringsAsFactors = FALSE
+                               header=TRUE, 
+                               sep=FILE_SEP,
+                               quote=FILE_QUOTE,
+                               dec=FILE_DEC, 
+                               stringsAsFactors=FALSE
             )
             ################################################################
             #           tigar method
             ################################################################
             if(method == "tigar"){
               dat <- data.frame(data[,-1],
-                                row.names = data[,1]
+                                row.names=data[,1]
               )
               p <- vector()
               for(i in colnames(dat)){
@@ -124,12 +124,12 @@ rhythm_gene <- function(infile,
               dat <- as.matrix(dat[,order(p)])
               timefac <- timepoints
               groupfac <- as.factor(sort(p))
-              dd <- data.frame(a = groupfac)
+              dd <- data.frame(a=groupfac)
               design <- as.matrix(sparse.model.matrix(~ -1 + a, dd))
               
               # define knots used for the p-spline at equal spaced quantiles of the covariate
               knots <- quantile(unique(timefac),
-                                seq(0, 1, length = (knot+2))[-c(1, (knot+2))]
+                                seq(0, 1, length=(knot+2))[-c(1, (knot+2))]
               )
               # obtain the design matrix for random coefficients using a radial basis
               z_k <- (abs(outer(timefac, knots, "-")))^deg
@@ -143,60 +143,60 @@ rhythm_gene <- function(infile,
               #    shrink hypreparameters
               ################################
               if (family %in% c("zinb", "zip", "nb", "poisson")){
-                shrinkA <- tigaRshrinkSeq(form = y ~ 1 + f(timefac,
-                                                           model = "z",
-                                                           Z = ZSpline,
-                                                           initial = 3,
-                                                           prior = "loggamma",
-                                                           param = c(1, 0.00001)
+                shrinkA <- tigaRshrinkSeq(form=y ~ 1 + f(timefac,
+                                                           model="z",
+                                                           Z=ZSpline,
+                                                           initial=3,
+                                                           prior="loggamma",
+                                                           param=c(1, 0.00001)
                 ), 
-                dat = dat,
-                maxiter = 3,
-                timefac = timefac,
-                groupfac = groupfac,
-                ZSpline = ZSpline,
-                fams = family,
-                shrinkrandom = "timefac",
-                ncpus = ncpus,
-                addpackage = c("splines")
+                dat=dat,
+                maxiter=3,
+                timefac=timefac,
+                groupfac=groupfac,
+                ZSpline=ZSpline,
+                fams=family,
+                shrinkrandom="timefac",
+                ncpus=ncpus,
+                addpackage=c("splines")
                 )
-                shrink0 <- tigaRshrinkSeq(form = y ~ 1,
-                                          dat = dat,
-                                          maxiter = 3, 
-                                          timefac = timefac,
-                                          groupfac = groupfac,
-                                          ZSpline = ZSpline,
-                                          fams = family,
-                                          ncpus = ncpus, 
-                                          addpackage = c("splines")
+                shrink0 <- tigaRshrinkSeq(form=y ~ 1,
+                                          dat=dat,
+                                          maxiter=3, 
+                                          timefac=timefac,
+                                          groupfac=groupfac,
+                                          ZSpline=ZSpline,
+                                          fams=family,
+                                          ncpus=ncpus, 
+                                          addpackage=c("splines")
                 )   
               }
               else if (family == "gaussian"){
-                shrinkA <- tigaRshrinkSeq(form = y ~ f(timefac,
-                                                       model = "z",
-                                                       Z = ZSpline,
-                                                       initial = 3,
-                                                       prior = "loggamma",
-                                                       param = c(1, 0.00001)
+                shrinkA <- tigaRshrinkSeq(form=y ~ f(timefac,
+                                                       model="z",
+                                                       Z=ZSpline,
+                                                       initial=3,
+                                                       prior="loggamma",
+                                                       param=c(1, 0.00001)
                 ), 
-                dat = dat,
-                maxiter = 3, 
-                timefac = timefac,
-                groupfac = groupfac,
-                ZSpline = ZSpline,
-                shrinkrandom = "timefac",
-                ncpus = ncpus, 
-                addpackage = c("splines")
+                dat=dat,
+                maxiter=3, 
+                timefac=timefac,
+                groupfac=groupfac,
+                ZSpline=ZSpline,
+                shrinkrandom="timefac",
+                ncpus=ncpus, 
+                addpackage=c("splines")
                 )
                 
-                shrink0 <- tigaRshrinkSeq(form = y ~ 1,
-                                          dat = dat,
-                                          maxiter = 3, 
-                                          timefac = timefac,
-                                          groupfac = groupfac,
-                                          ZSpline = ZSpline,
-                                          ncpus = ncpus, 
-                                          addpackage = c("splines")
+                shrink0 <- tigaRshrinkSeq(form=y ~ 1,
+                                          dat=dat,
+                                          maxiter=3, 
+                                          timefac=timefac,
+                                          groupfac=groupfac,
+                                          ZSpline=ZSpline,
+                                          ncpus=ncpus, 
+                                          addpackage=c("splines")
                 )
               } else{
                 stop("Choose correct likelihood to be used.")
@@ -204,54 +204,54 @@ rhythm_gene <- function(infile,
               ##############################
               #   fit models
               ##############################
-              seqFitA <- tigaRshrinkFit(forms = y ~ f(timefac, 
-                                                      model = "z",
-                                                      Z  = ZSpline,
-                                                      initial = 3,
-                                                      prior = "loggamma", 
-                                                      param = c(1, 0.00001)
+              seqFitA <- tigaRshrinkFit(forms=y ~ f(timefac, 
+                                                      model="z",
+                                                      Z =ZSpline,
+                                                      initial=3,
+                                                      prior="loggamma", 
+                                                      param=c(1, 0.00001)
               ),
-              dat = dat[1:100,],
-              timefac = timefac, 
-              groupfac = groupfac,
-              ZSpline = ZSpline,
-              fams = family,
-              shrinksimul = shrinkA, 
-              ncpus = ncpus
+              dat=dat[1:100,],
+              timefac=timefac, 
+              groupfac=groupfac,
+              ZSpline=ZSpline,
+              fams=family,
+              shrinksimul=shrinkA, 
+              ncpus=ncpus
               )
-              seqFit0 <- tigaRshrinkFit(forms = y ~ 1,
-                                        dat = dat[1:100,],
-                                        timefac = timefac, 
-                                        groupfac = groupfac,
-                                        ZSpline = ZSpline,
-                                        fams = family,
-                                        shrinksimul = shrink0, 
-                                        ncpus = ncpus
+              seqFit0 <- tigaRshrinkFit(forms=y ~ 1,
+                                        dat=dat[1:100,],
+                                        timefac=timefac, 
+                                        groupfac=groupfac,
+                                        ZSpline=ZSpline,
+                                        fams=family,
+                                        shrinksimul=shrink0, 
+                                        ncpus=ncpus
               )
               ######################
               #   testing
               ######################
-              res <- tdge(dat = dat[1:100,],
-                          fitAlt = seqFitA,
-                          fitNull = seqFit0,
-                          design = design,
-                          ZSpline = ZSpline
+              res <- tdge(dat=dat[1:100,],
+                          fitAlt=seqFitA,
+                          fitNull=seqFit0,
+                          design=design,
+                          ZSpline=ZSpline
               )
-              return(list(result = res, 
-                          fitA = seqFitA, 
-                          fit0 = seqFit0)
+              return(list(result=res, 
+                          fitA=seqFitA, 
+                          fit0=seqFit0)
               )
             }
             ################################################################
             #           JTK method
             ################################################################
             else if(method == "JTK"){
-              res <- meta2d(infile = infile,
-                            filestyle = filestyle, 
-                            timepoints = timepoints,
-                            cycMethod = method, 
-                            outIntegration = "noIntegration",
-                            outputFile = FALSE
+              res <- meta2d(infile=infile,
+                            filestyle=filestyle, 
+                            timepoints=timepoints,
+                            cycMethod=method, 
+                            outIntegration="noIntegration",
+                            outputFile=FALSE
               )$JTK
               return(res)
             }
@@ -259,12 +259,12 @@ rhythm_gene <- function(infile,
             #           ARS method
             ################################################################
             else if(method == "ARS"){
-              res <- meta2d(infile = infile,
-                            filestyle = filestyle, 
-                            timepoints = timepoints,
-                            cycMethod = method, 
-                            outIntegration = "noIntegration",
-                            outputFile = FALSE
+              res <- meta2d(infile=infile,
+                            filestyle=filestyle, 
+                            timepoints=timepoints,
+                            cycMethod=method, 
+                            outIntegration="noIntegration",
+                            outputFile=FALSE
               )$ARS
               return(res)
             }
@@ -272,12 +272,12 @@ rhythm_gene <- function(infile,
             #           LS method
             ################################################################
             else if(method == "LS"){
-              res <- meta2d(infile = infile,
-                            filestyle = filestyle, 
-                            timepoints = timepoints,
-                            cycMethod = method, 
-                            outIntegration = "noIntegration",
-                            outputFile = FALSE
+              res <- meta2d(infile=infile,
+                            filestyle=filestyle, 
+                            timepoints=timepoints,
+                            cycMethod=method, 
+                            outIntegration="noIntegration",
+                            outputFile=FALSE
               )$LS
               return(res)
             } else{

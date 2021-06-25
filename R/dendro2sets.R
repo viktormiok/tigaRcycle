@@ -16,7 +16,7 @@ dendro2sets <- function(hc){
                 newname <- paste(parent.label,
                                  "[",
                                  i,
-                                 sep = ""
+                                 sep=""
                 )
                 if (is.leaf(x[[i]]))
                   newname <- paste(newname, 
@@ -34,9 +34,9 @@ dendro2sets <- function(hc){
                                   newname
                 )
                 if (!is.leaf(x[[i]])) {
-                  struct <- do.sets(x = x[[i]], 
-                                    parent.label = newname, 
-                                    parent.branch = newbranch, 
+                  struct <- do.sets(x=x[[i]], 
+                                    parent.label=newname, 
+                                    parent.branch=newbranch, 
                                     struct
                   )
                 }
@@ -45,10 +45,10 @@ dendro2sets <- function(hc){
             }
             
             struct <- list()
-            struct$sets = new.env(hash = TRUE)
+            struct$sets=new.env(hash=TRUE)
             struct$sets$"1" <- labels(hc)
-            struct$ancestors <- new.env(hash = TRUE)
-            struct$branch <- new.env(hash = TRUE)
+            struct$ancestors <- new.env(hash=TRUE)
+            struct$branch <- new.env(hash=TRUE)
             struct$branch$"1" <- numeric(0)
             struct$names <- "O"
             
@@ -61,7 +61,7 @@ dendro2sets <- function(hc){
             else
               struct$names <- paste(struct$names,
                                     labels(hc),
-                                    sep = ":")
+                                    sep=":")
             
             #convert to lists
             struct$sets <- as.list(struct$sets)

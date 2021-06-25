@@ -44,14 +44,14 @@ enrichSelectPath <- function(genes,
                   if (!is(organism, "character")) {
                     stop("Input (organism) is of wrong class.")
                   }
-                  sig.gene <- bitr(geneID = genes, 
-                                   fromType = "SYMBOL",
-                                   toType = "ENTREZID",
-                                   OrgDb = orgdb
+                  sig.gene <- bitr(geneID=genes, 
+                                   fromType="SYMBOL",
+                                   toType="ENTREZID",
+                                   OrgDb=orgdb
                   )
-                  obj <- enrichKEGG(gene = sig.gene[,2],
-                                    organism = organism,
-                                    pvalueCutoff = cut_off
+                  obj <- enrichKEGG(gene=sig.gene[,2],
+                                    organism=organism,
+                                    pvalueCutoff=cut_off
                   )
                   obj <- obj@result
                   empt <- data.frame(t(rep('',5)))
@@ -63,13 +63,13 @@ enrichSelectPath <- function(genes,
                   } else {
                     if(nrow(obj[obj$p.adjust < cut_off, ]) > 0){
                       for(i in 1:nrow(obj)){
-                        obj[i,8] <- paste(suppressMessages(bitr(geneID = unlist(strsplit(obj[i, 8], 
+                        obj[i,8] <- paste(suppressMessages(bitr(geneID=unlist(strsplit(obj[i, 8], 
                                                                                          "/")),
-                                                                fromType = "ENTREZID",
-                                                                toType = "SYMBOL",
-                                                                OrgDb = orgdb
+                                                                fromType="ENTREZID",
+                                                                toType="SYMBOL",
+                                                                OrgDb=orgdb
                         )[,2]
-                        ), collapse = "/"
+                        ), collapse="/"
                         )
                       } 
                       if(is.null(selectPathway)){

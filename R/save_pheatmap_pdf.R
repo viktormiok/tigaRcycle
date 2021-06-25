@@ -6,8 +6,8 @@
 
 save_pheatmap_pdf <- function(obj, 
                               filename, 
-                              width = 10, 
-                              height = 10) {
+                              width=10, 
+                              height=10) {
                     # obj: pheatmap plot object
                     # filename: location path and file name
                     # width: width of the plot
@@ -45,8 +45,8 @@ save_pheatmap_pdf <- function(obj,
                     stopifnot(!missing(obj))
                     stopifnot(!missing(filename))
                     pdf(filename,
-                        width = width,
-                        height = height
+                        width=width,
+                        height=height
                     )
                     grid::grid.newpage()
                     grid::grid.draw(obj$gtable)

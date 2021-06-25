@@ -5,5 +5,5 @@
 #########################################################################################
 
 hclust.ave <- function(x) hclust(x, 
-                                 method = "average"
+                                 method="average"
 )

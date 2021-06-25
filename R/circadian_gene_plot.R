@@ -53,55 +53,55 @@ circadian_gene_plot <- function(gene_name,
                                            diet,
                                            gene){
                       
-                      d <- tibble(time = tp, 
-                                  value = as.numeric(data[rownames(data) == gene_name, ]),
-                                  diet = diet
+                      d <- tibble(time=tp, 
+                                  value=as.numeric(data[rownames(data) == gene_name, ]),
+                                  diet=diet
                       ) %>% arrange(time)
                       
                       df <- data_summary(d,
-                                         varname = "value", 
-                                         groupnames = c("diet", "time")
+                                         varname="value", 
+                                         groupnames=c("diet", "time")
                       )
                       
-                      p1 <- ggplot(df, aes(x = time, 
-                                           y = mean,
-                                           group = diet, 
-                                           color = diet)) + 
+                      p1 <- ggplot(df, aes(x=time, 
+                                           y=mean,
+                                           group=diet, 
+                                           color=diet)) + 
                         geom_line() + 
                         geom_point() + 
                         ggtitle("hippocampus") + 
                         xlab("time points") + 
                         ylab("expression") +
-                        theme(plot.title = element_text(hjust = 0.5)) +
-                        geom_errorbar(aes(ymin = mean - sd, 
-                                          ymax = mean + sd), 
-                                      width = .2, 
-                                      position = position_dodge(0.05)) + 
-                        scale_color_manual(values = c("lightskyblue", 
+                        theme(plot.title=element_text(hjust=0.5)) +
+                        geom_errorbar(aes(ymin=mean - sd, 
+                                          ymax=mean + sd), 
+                                      width=.2, 
+                                      position=position_dodge(0.05)) + 
+                        scale_color_manual(values=c("lightskyblue", 
                                                       "indianred1")) +
                         annotate("rect", 
-                                 xmin = 3.5, 
-                                 xmax = Inf, 
-                                 ymin = -Inf,
-                                 ymax = Inf, 
-                                 alpha = .3
+                                 xmin=3.5, 
+                                 xmax=Inf, 
+                                 ymin=-Inf,
+                                 ymax=Inf, 
+                                 alpha=.3
                         )
                     }
                     
-                    p1 <- plot_panel(data = data1,
-                                     tp = tp1,
-                                     diet = group1,
-                                     gene = gene_name
+                    p1 <- plot_panel(data=data1,
+                                     tp=tp1,
+                                     diet=group1,
+                                     gene=gene_name
                     )
-                    p2 <- plot_panel(data = data2,
-                                     tp = tp2,
-                                     diet = group2,
-                                     gene = gene_name
+                    p2 <- plot_panel(data=data2,
+                                     tp=tp2,
+                                     diet=group2,
+                                     gene=gene_name
                     )
                     
                     grid.arrange(p1,# + ylim(min(hip_data[rownames(hip_data)==gene,])-0.2, max(hip_data[rownames(hip_data)==gene,])+0.2), 
                                  p2,# + ylim(min(hpt_data[rownames(hpt_data)==gene,])-0.2, max(hpt_data[rownames(hpt_data)==gene,])+0.2),
-                                 nrow = 1, 
-                                 top = gene_name
+                                 nrow=1, 
+                                 top=gene_name
                     )
 }

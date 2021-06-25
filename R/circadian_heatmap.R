@@ -51,7 +51,7 @@ circadian_heatmap <- function(data,
                     (length(data) != length(legc))) {
                   stop("Dimension of the design matrices do not correspond")
                 }
-                pdf(file = filename)
+                pdf(file=filename)
                 
                 x <- as.matrix(sumdat[rownames(sumdat) %in% setdiff(data[[1]], data[[2]]), colinf %in% names(data[1])])
                 Rowv <- rowMeans(x)
@@ -63,29 +63,29 @@ circadian_heatmap <- function(data,
                 # select all the samples of interest for heatmap
                 samp <- colinf %in% c(names(data[1]),names(data[2]))
                 mat <- as.matrix(cbind(sumdat[rownames(sumdat) %in% setdiff(data[[1]], data[[2]]), samp][rev(rowInd), ]))
-                hm <- heatmap.2(x = mat,
-                                col = colors,
-                                scale = "row",
-                                trace = "none",
-                                main = title,
-                                Rowv = F,
-                                Colv = F,
-                                keysize = 1.1,
-                                dendrogram = "row",
-                                distfun = distfun,
-                                hclustfun = hclustfun, 
-                                ColSideColors = rep(legc, each = 6)
+                hm <- heatmap.2(x=mat,
+                                col=colors,
+                                scale="row",
+                                trace="none",
+                                main=title,
+                                Rowv=F,
+                                Colv=F,
+                                keysize=1.1,
+                                dendrogram="row",
+                                distfun=distfun,
+                                hclustfun=hclustfun, 
+                                ColSideColors=rep(legc, each=6)
                 )
                 legend("topright",       
-                       legend = legs,
-                       col = legc, 
-                       pch = 19 
+                       legend=legs,
+                       col=legc, 
+                       pch=19 
                 )
                 dev.off() 
                 eval(hm$call)
                 legend("topright",       
-                       legend = legs,
-                       col = legc, 
-                       pch = 19 
+                       legend=legs,
+                       col=legc, 
+                       pch=19 
                 )
 }

@@ -20,14 +20,14 @@ data_summary <- function(data,
                   stop("Input (groupnames) is of wrong class.")
                 }
                 summary_func <- function(x, col){
-                  c(mean = mean(x[[col]], 
-                                na.rm = TRUE),
-                    sd = sqrt(var(x[[col]],
-                                  na.rm = TRUE)/length(x[[col]])))/2
+                  c(mean=mean(x[[col]], 
+                                na.rm=TRUE),
+                    sd=sqrt(var(x[[col]],
+                                  na.rm=TRUE)/length(x[[col]])))/2
                 }
                 data_sum<-ddply(data,
                                 groupnames,
-                                .fun = summary_func,
+                                .fun=summary_func,
                                 varname
                 )
                 return(data_sum)
