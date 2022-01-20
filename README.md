@@ -4,6 +4,8 @@ The R-package `tigaRcycle` performs integrative detection of circadian signals i
 
 Note: if you have a choice to use either Windows or Unix/Linux, opt for the latter. `tigaR` runs more efficiently under Unix/Linux than under Windows. NOTE:  when running `tigaR` you may see *** WARNINGS ***  from `INLA` (e.g. on eigenvalues, or on convergence, or even something like 18500 Aborted...). They can currently not be suppressed, because they are produced by C-code. Please ignore them.
 
+![image](https://user-images.githubusercontent.com/22052679/150277203-646d6d85-482a-44ab-8e30-c20d260179fe.png)
+
 # References
 
 Publication related to `tigaRcycle` include:
