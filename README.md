@@ -1,3 +1,5 @@
+<img src="https://github.com/viktormiok/viktormiok.wordpress.com/blob/main/software/tigarcycle.png" align="right" height="200" width="200">
+
 ![](https://img.shields.io/badge/language-R_and_python-orange.svg) ![version](https://img.shields.io/badge/GiHub_version-1.1.0-519dd9) ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/viktormiok/tigaRcycle) ![GitHub issues](https://img.shields.io/github/issues/viktormiok/tigaRcycle)
 
 ![dependencies](https://img.shields.io/badge/dependencies-up%20to%20date-orange)  	![commit](https://img.shields.io/github/last-commit/viktormiok/tigaRcycle) ![GitHub](https://img.shields.io/github/license/viktormiok/tigaRcycle)
