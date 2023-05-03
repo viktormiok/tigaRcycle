@@ -4,7 +4,7 @@ import pandas as pd
 dirr = '~/Documents/consultation/ChunXia/Rat_timedata/circadian_analysis/input/'
 
 path = pd.read_excel(dirr + 'target_genes.xlsx',
-                     sheet_name = 'KEGG'
+                     sheet_name='KEGG'
        )['KEGG']
 
 def substring(whole, sub1, sub2):
@@ -40,7 +40,7 @@ def kegg_genes(pathways):
         result[i] = pathgen
     return result
 
-mydict = kegg_genes(pathways = path)
+mydict = kegg_genes(pathways=path)
 
 
 max_len = []
