@@ -22,7 +22,7 @@
 
 ## Overview
 
-The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, both sequencing counts RNAseq and continuous microarray data. The package offers a broad range of functions for visualisation of rithmic signals and comparison between different diets and time points. Also, pathway enrichment analysis and visualisation using different repositories can be performed comparing different conditions.
+The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, both sequencing counts RNAseq and continuous microarray data. The package offers a broad range of functions for visualisation of rithmic signals and comparison between different diets and time points. Also, pathway enrichment analysis and visualisation using different repositories can be performed by comparing different conditions.
 
 **Note:** if you have a choice to use either Windows or Unix/Linux, opt for the latter. __`tigaRcycle`__ runs more efficiently under Unix/Linux than under Windows. NOTE:  when running __`tigaRcycle`__ you may see *** WARNINGS ***  from [__`INLA`__](https://www.r-inla.org/) (e.g. on eigenvalues, or on convergence, or even something like 18500 Aborted...). They can currently not be suppressed, because they are produced by C-code. Please ignore them. 
 
@@ -69,10 +69,10 @@ Data required for identifying circadian rhythms in transcriptomics data have bee
 | RNA-Seq      | Not available yet |
 
 
-In order to access one of the data set for instance GSE138079 you need to run the code bellow. Unpacking the data requires tar and gunzip, which should already be available on most systems.
+In order to access one of the data sets for instance GSE138079 you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
 
 ```
-cd ../  #To get to the main github repo folder
+cd ../  #To get to the main GitHub repo folder
 mkdir -p data/tigaRcycle_data_analysis/
 cd data/tigaRcycle_data_analysis/
 wget ftp://ftp.ncbi.nlm.nih.gov/geo/series/GSE13nnn/GSE138079/suppl/GSE138079_RAW.tar
@@ -97,7 +97,7 @@ __`tigaRcycle`__ is distributed under the MIT license. Please read the license b
 
 Publication related to __`tigaRcycle`__ include:
 
-- Miok, V., Yi, C., Gonzalez Garcia, I., Lutter, D., García-Cáceres, C.,"Circadian transcriptomics of different brain regions reveals system-wide coordination and communication between clocks", *In preparation*
+- Miok, V., Yi, C., Gonzalez Garcia, I., Lutter, D., García-Cáceres, C., "Circadian transcriptomics of different brain regions reveals system-wide coordination and communication between clocks", *In preparation*
 
 - Miok, V., Wilting, S.M., Van de Wiel, M.A., Jaspers, A., van Noort, P.I., Brakenhoff, R.H., Snijders, P.J.F., Steenbergen, R.D.M., Van Wieringen, W.N. (2014), "[tigaR: integrative significance analysis of temporal differential gene expression induced by genomic abnormalities](https://doi.org/10.1186/1471-2105-15-327)", *BMC Bioinformatics*, 15, 327. 
 
