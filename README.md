@@ -22,7 +22,7 @@
 
 ## Overview
 
-The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, both sequencing counts RNAseq and continuous microarray data. The package offers a broad range of functions for visualisation of rithmic signals and comparison between different diets and time points. Also, pathway enrichment analysis and visualisation using different repositories can be performed by comparing different conditions.
+The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, sequencing counts RNAseq, and continuous microarray data. The package offers a broad range of functions for the visualization of rhythmic signals and comparison between different diets and time points. Also, pathway enrichment analysis and visualization using different repositories can be performed by comparing different conditions.
 
 **Note:** if you have a choice to use either Windows or Unix/Linux, opt for the latter. __`tigaRcycle`__ runs more efficiently under Unix/Linux than under Windows. NOTE:  when running __`tigaRcycle`__ you may see *** WARNINGS ***  from [__`INLA`__](https://www.r-inla.org/) (e.g. on eigenvalues, or on convergence, or even something like 18500 Aborted...). They can currently not be suppressed, because they are produced by C-code. Please ignore them. 
 
