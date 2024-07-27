@@ -24,7 +24,7 @@
 
 The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, sequencing counts RNAseq, and continuous microarray data. The package offers a broad range of functions for the visualization of rhythmic signals and comparison between different diets and time points. Also, pathway enrichment analysis and visualization using different repositories can be performed by comparing different conditions.
 
-**Note:** if you have a choice to use either Windows or Unix/Linux, opt for the latter. __`tigaRcycle`__ runs more efficiently under Unix/Linux than under Windows. NOTE:  when running __`tigaRcycle`__ you may see *** WARNINGS ***  from [__`INLA`__](https://www.r-inla.org/) (e.g. on eigenvalues, or on convergence, or even something like 18500 Aborted...). They can currently not be suppressed, because they are produced by C-code. Please ignore them. 
+**Note:** If you have a choice to use either Windows or Unix/Linux, opt for the latter. __`tigaRcycle`__ runs more efficiently under Unix/Linux than under Windows. NOTE:  When running __`tigaRcycle`__ you may see *** WARNINGS ***  from [__`INLA`__](https://www.r-inla.org/) (e.g. on eigenvalues, or on convergence, or even something like 18500 Aborted...). They can currently not be suppressed, because they are produced by C-code. Please ignore them. 
 
 ![image](https://user-images.githubusercontent.com/22052679/150277203-646d6d85-482a-44ab-8e30-c20d260179fe.png)
 
@@ -51,9 +51,9 @@ If your system configuration is making it difficult to install __`tigaRcycle`__ 
 
 **Note:** On Mac OS X, Docker Machine has Memory and CPU limits. To control it, please check instructions either for [CLI](https://stackoverflow.com/questions/32834082/how-to-increase-docker-machine-memory-mac/32834453#32834453) or for [Docker Desktop](https://docs.docker.com/docker-for-mac/#advanced).
 
-For building Docker image from the Dockerfile, download the [Dockerfile](https://github.com/viktormiok/tigaRcycle/blob/main/Dockerfile) (available in this repo) and run to following command to build it:
+For building a Docker image from the Dockerfile, download the [Dockerfile](https://github.com/viktormiok/tigaRcycle/blob/main/Dockerfile) (available in this repo) and run to following command to build it:
 ```
-docker build -t tigaRcycle .
+docker build -t tigaRcycle.
 ```
 This will create a __`tigaRcycle`__ docker image on your system (please be patient, as the build could take approximately 30-50 minutes to finish).
 You can then run it using the following command:
@@ -90,7 +90,7 @@ Please see the following tutorials for detailed examples of how to use __`tigaRc
 
 ## License
 
-__`tigaRcycle`__ is distributed under the MIT license. Please read the license before using __`tigaRcycle`__, which it is distributed in the `LICENSE` file.
+__`tigaRcycle`__ is distributed under the MIT license. Please read the license before using __`tigaRcycle`__, which is distributed in the `LICENSE` file.
 
 
 ## References
