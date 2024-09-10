@@ -22,9 +22,9 @@
 
 ## Overview
 
-The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, sequencing counts RNAseq, and continuous microarray data. The package offers a broad range of functions for the visualization of rhythmic signals and comparison between different diets and time points. Pathway enrichment analysis and visualization using different repositories can also be performed by comparing different conditions.
+The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, sequencing counts RNAseq and continuous microarray data. The package offers a broad range of functions for the visualization of rhythmic signals and comparison between different diets and time points. Pathway enrichment analysis and visualization using different repositories can also be performed by comparing different conditions.
 
-**Note:** If you can choose to use Windows or Unix/Linux, opt for the latter. __`tigaRcycle`__ runs more efficiently under Unix/Linux than Windows. NOTE:  When running __`tigaRcycle`__ you may see *** WARNINGS ***  from [__`INLA`__](https://www.r-inla.org/) (e.g. on eigenvalues, or on convergence, or even something like 18500 Aborted...). They can currently not be suppressed, because C-code produces them. Please ignore them. 
+**Note:** If you can choose to use Windows or Unix/Linux, opt for the latter. __`tigaRcycle`__ runs more efficiently under Unix/Linux than Windows. NOTE:  When running __`tigaRcycle`__ you may see *** WARNINGS ***  from [__`INLA`__](https://www.r-inla.org/) (e.g. on eigenvalues, or convergence, or even something like 18500 Aborted...). They can currently not be suppressed, because C-code produces them. Please ignore them. 
 
 ![image](https://user-images.githubusercontent.com/22052679/150277203-646d6d85-482a-44ab-8e30-c20d260179fe.png)
 
@@ -47,9 +47,9 @@ utils::vignette("tigaRcycle")
 
 ## Docker
 
-If your system configuration is making it difficult to install __`tigaRcycle`__ natively, an alternative way to get __`tigaRcycle`__ running is through a docker container.
+If your system configuration makes it difficult to install __`tigaRcycle`__ natively, a docker container is an alternative way to get __`tigaRcycle`__ running.
 
-**Note:** On Mac OS X, Docker Machine has Memory and CPU limits. To control it, please check instructions either for [CLI](https://stackoverflow.com/questions/32834082/how-to-increase-docker-machine-memory-mac/32834453#32834453) or for [Docker Desktop](https://docs.docker.com/docker-for-mac/#advanced).
+**Note:** Docker Machine has Memory and CPU limits on Mac OS X. To control it, please check instructions either for [CLI](https://stackoverflow.com/questions/32834082/how-to-increase-docker-machine-memory-mac/32834453#32834453) or for [Docker Desktop](https://docs.docker.com/docker-for-mac/#advanced).
 
 For building a Docker image from the Dockerfile, download the [Dockerfile](https://github.com/viktormiok/tigaRcycle/blob/main/Dockerfile) (available in this repo) and run to following command to build it:
 ```
