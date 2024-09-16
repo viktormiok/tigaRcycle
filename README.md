@@ -22,7 +22,7 @@
 
 ## Overview
 
-The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, sequencing counts RNAseq, and continuous microarray data. The package offers a broad range of functions for the visualization of rhythmic signals and comparison between different diets and time points. Pathway enrichment analysis and visualization using different repositories can also be performed by comparing different conditions.
+The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, sequencing counts RNA-seq, and continuous microarray data. The package offers a broad range of functions for the visualization of rhythmic signals and comparison between different diets and time points. Pathway enrichment analysis and visualization using different repositories can also be performed by comparing different conditions.
 
 **Note:** If you can choose to use Windows or Unix/Linux, opt for the latter. __`tigaRcycle`__ runs more efficiently under Unix/Linux than Windows. NOTE:  When running __`tigaRcycle`__ you may see *** WARNINGS ***  from [__`INLA`__](https://www.r-inla.org/) (e.g. on eigenvalues, or convergence, or even something like 18500 Aborted...). They can currently not be suppressed, because C-code produces them. Please ignore them. 
 
@@ -62,14 +62,14 @@ docker run -d -p 8787:8787 -e PASSWORD=pass --name tigaRcycle -it tigaRcycle
 ```
 
 ## Data
-Data required for identifying circadian rhythms in transcriptomics data have been deposited in the National Center for Biotechnology Information Gene Expression Omnibus (GEO) and are accessible through the GEO Series accession numbers:
+Data required for identifying circadian rhythms in transcriptomics data have been deposited in the National Center for Biotechnology Information Gene Expression Omnibus (GEO). They are accessible through the GEO Series accession numbers:
 | Data type     | GEO number |
 | ------------- | ------------- |
 | mRNA Arrays  | [__`GSE138079`__](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138079) |
 | RNA-Seq      | Not available yet |
 
 
-In order to access one of the data sets for instance GSE138079 you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
+To access one of the data sets for instance GSE138079 you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
 
 ```
 cd ../  #To get to the main GitHub repo folder
@@ -90,7 +90,7 @@ Please see the following tutorials for detailed examples of how to use __`tigaRc
 
 ## License
 
-__`tigaRcycle`__ is distributed under the MIT license. Please read the license before using __`tigaRcycle`__, which is distributed in the `LICENSE` file.
+__`tigaRcycle`__ is distributed under the MIT license. Please read the license before using __`tigaRcycle`__, distributed in the `LICENSE` file.
 
 
 ## References
