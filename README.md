@@ -69,7 +69,7 @@ Data required for identifying circadian rhythms in transcriptomics data have bee
 | RNA-Seq      | Not available yet |
 
 
-To access one of the data sets for instance GSE138079 you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
+To access one of the data sets, for instance, GSE138079, you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
 
 ```
 cd ../  #To get to the main GitHub repo folder
