@@ -51,7 +51,7 @@ If your system configuration makes installing __`tigaRcycle`__ natively difficul
 
 **Note:** Docker Machine has Memory and CPU limits on Mac OS X. To control it, please check instructions either for [CLI](https://stackoverflow.com/questions/32834082/how-to-increase-docker-machine-memory-mac/32834453#32834453) or for [Docker Desktop](https://docs.docker.com/docker-for-mac/#advanced).
 
-For building a Docker image from the Dockerfile, download the [Dockerfile](https://github.com/viktormiok/tigaRcycle/blob/main/Dockerfile) (available in this repo) and run the following command to make it:
+To build a Docker image from the Dockerfile, download the [Dockerfile](https://github.com/viktormiok/tigaRcycle/blob/main/Dockerfile) (available in this repo) and run the following command to make it:
 ```
 docker build -t tigaRcycle.
 ```
@@ -97,8 +97,8 @@ __`tigaRcycle`__ is distributed under the MIT license. Please read the license b
 
 Publication related to __`tigaRcycle`__ include:
 
-- Miok, V., Yi, C., Gonzalez Garcia, I., Lutter, D., García-Cáceres, C., "Circadian transcriptomics of different brain regions reveals system-wide coordination and communication between clocks", *In preparation*
+- **Miok, V.**, Yi, C., Gonzalez Garcia, I., Lutter, D., García-Cáceres, C., "Circadian transcriptomics of different brain regions reveals system-wide coordination and communication between clocks", *In preparation*
 
-- Miok, V., Wilting, S.M., Van de Wiel, M.A., Jaspers, A., van Noort, P.I., Brakenhoff, R.H., Snijders, P.J.F., Steenbergen, R.D.M., Van Wieringen, W.N. (2014), "[tigaR: integrative significance analysis of temporal differential gene expression induced by genomic abnormalities](https://doi.org/10.1186/1471-2105-15-327)", *BMC Bioinformatics*, 15, 327. 
+- **Miok, V.**, Wilting, S.M., Van de Wiel, M.A., Jaspers, A., van Noort, P.I., Brakenhoff, R.H., Snijders, P.J.F., Steenbergen, R.D.M., Van Wieringen, W.N. (2014), "[tigaR: integrative significance analysis of temporal differential gene expression induced by genomic abnormalities](https://doi.org/10.1186/1471-2105-15-327)", *BMC Bioinformatics*, 15, 327. 
 
 Please cite the relevant publication if you use __`tigaRcycle`__.
