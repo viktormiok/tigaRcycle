@@ -24,7 +24,7 @@
 
 The R-package __`tigaRcycle`__ performs integrative detection of circadian signals in time series omics data, sequencing counts RNA-seq, and continuous microarray data. The package offers a broad range of functions for the visualization of rhythmic signals and comparison between different diets and time points. Pathway enrichment analysis and visualization using different repositories can also be performed by comparing different conditions.
 
-**Note:** If you can choose to use Windows or Unix/Linux, opt for the latter. __`tigaRcycle`__ runs more efficiently under Unix/Linux than Windows. NOTE:  When running __`tigaRcycle`__, you may see *** WARNINGS ***  from [__`INLA`__](https://www.r-inla.org/) (e.g., on eigenvalues, or convergence, or even something like 18500 Aborted...). They can currently not be suppressed, because C-code produces them. Please ignore them. 
+**Note:** If you can choose to use Windows or Unix/Linux, opt for the latter. __`tigaRcycle`__ runs more efficiently under Unix/Linux than Windows. NOTE:  When running __`tigaRcycle`__, you may see *** WARNINGS ***  from [__`INLA`__](https://www.r-inla.org/) (e.g., on eigenvalues, or convergence, or even something like 18500 Aborted...). They can currently not be suppressed because C code produces them. Please ignore them. 
 
 ![image](https://user-images.githubusercontent.com/22052679/150277203-646d6d85-482a-44ab-8e30-c20d260179fe.png)
 
@@ -55,7 +55,7 @@ To build a Docker image from the Dockerfile, download the [Dockerfile](https://g
 ```
 docker build -t tigaRcycle.
 ```
-This will create a __`tigaRcycle`__ docker image on your system (please be patient, as the build could take approximately 30-50 minutes to finish).
+This will create a __`tigaRcycle`__ Docker image on your system (please be patient, as the build could take approximately 30-50 minutes to finish).
 You can then run it using the following command:
 ```
 docker run -d -p 8787:8787 -e PASSWORD=pass --name tigaRcycle -it tigaRcycle
