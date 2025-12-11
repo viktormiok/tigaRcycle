@@ -62,14 +62,14 @@ docker run -d -p 8787:8787 -e PASSWORD=pass --name tigaRcycle -it tigaRcycle
 ```
 
 ## Data
-Data required for identifying circadian rhythms in transcriptomics data have been deposited in the National Center for Biotechnology Information Gene Expression Omnibus (GEO). They are accessible through the GEO Series accession numbers:
+The data required for identifying circadian rhythms in transcriptomics studies have been deposited in the National Center for Biotechnology Information’s Gene Expression Omnibus (GEO). They are accessible through the GEO Series accession numbers:
 | Data type     | GEO number |
 | ------------- | ------------- |
 | mRNA Arrays  | [__`GSE138079`__](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE138079) |
 | RNA-Seq      | Not available yet |
 
 
-To access one of the data sets, for instance, GSE138079, you need to run the code below. Unpacking the data requires tar and gunzip, which should already be available on most systems.
+To access one of the data sets, such as GSE138079, simply run the code below. Extracting the data requires tar and gunzip, which are typically available on most systems.
 
 ```
 cd ../  #To get to the main GitHub repo folder
